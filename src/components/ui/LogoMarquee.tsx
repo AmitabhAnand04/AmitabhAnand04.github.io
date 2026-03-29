@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
 
 interface MarqueeItem {
   name: string
@@ -19,12 +19,20 @@ const items: MarqueeItem[] = [
   { name: 'Salesforce',    slug: 'salesforce',    label: 'Salesforce' },
 ]
 
-// Duplicate for seamless loop
 const doubled = [...items, ...items]
 
-function MarqueeCard({ item }: { item: MarqueeItem }) {
+interface MarqueeCardProps {
+  item: MarqueeItem
+  cardRef: (el: HTMLDivElement | null) => void
+}
+
+function MarqueeCard({ item, cardRef }: MarqueeCardProps) {
   return (
-    <div className="flex-shrink-0 flex items-center gap-3 px-5 py-3 mx-2 rounded-xl bg-dark-800 border border-white/8 hover:border-indigo-500/30 transition-colors duration-200 group cursor-default">
+    <div
+      ref={cardRef}
+      className="flex-shrink-0 flex items-center gap-3 px-5 py-3 mx-2 rounded-xl bg-dark-800 border border-white/8 hover:border-indigo-500/30 transition-colors duration-200 group cursor-default"
+      style={{ transformOrigin: 'center center', willChange: 'transform' }}
+    >
       <img
         src={`https://cdn.simpleicons.org/${item.slug}/ffffff`}
         alt={item.name}
@@ -39,10 +47,45 @@ function MarqueeCard({ item }: { item: MarqueeItem }) {
 }
 
 export default function LogoMarquee() {
-  const ref = useRef<HTMLDivElement>(null)
+  const mouseXRef = useRef<number | null>(null)
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([])
+
+  useEffect(() => {
+    let rafId: number
+
+    const tick = () => {
+      const mx = mouseXRef.current
+      cardRefs.current.forEach((card) => {
+        if (!card) return
+        if (mx === null) {
+          card.style.transform = 'scale(1)'
+          card.style.zIndex = ''
+          return
+        }
+        const rect = card.getBoundingClientRect()
+        const centerX = rect.left + rect.width / 2
+        const dist = Math.abs(mx - centerX)
+        const radius = 200           // px — influence zone
+        const maxScale = 1.55        // max size at cursor center
+        const t = Math.max(0, 1 - dist / radius)
+        const scale = 1 + (t * t) * (maxScale - 1)   // ease-out curve
+        card.style.transform = `scale(${scale})`
+        card.style.zIndex = scale > 1.02 ? '20' : ''
+      })
+      rafId = requestAnimationFrame(tick)
+    }
+
+    rafId = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(rafId)
+  }, [])
 
   return (
-    <div className="relative overflow-hidden w-full">
+    <div
+      className="relative w-full"
+      style={{ overflowX: 'clip' }}   /* clip horizontal only — lets scaled cards breathe vertically */
+      onMouseMove={(e) => { mouseXRef.current = e.clientX }}
+      onMouseLeave={() => { mouseXRef.current = null }}
+    >
       {/* Left fade */}
       <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-dark-900 to-transparent z-10 pointer-events-none" />
       {/* Right fade */}
@@ -50,15 +93,18 @@ export default function LogoMarquee() {
 
       {/* Scrolling track */}
       <div
-        ref={ref}
-        className="flex items-center py-2"
+        className="flex items-center py-5"
         style={{
           animation: 'marqueeScroll 28s linear infinite',
           width: 'max-content',
         }}
       >
         {doubled.map((item, i) => (
-          <MarqueeCard key={`${item.slug}-${i}`} item={item} />
+          <MarqueeCard
+            key={`${item.slug}-${i}`}
+            item={item}
+            cardRef={(el) => { cardRefs.current[i] = el }}
+          />
         ))}
       </div>
 

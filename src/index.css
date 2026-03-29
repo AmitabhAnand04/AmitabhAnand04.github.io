@@ -2,6 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ─── Theme color variables ───────────────────────────────────────────────── */
+:root {
+  /* Dark theme (default) */
+  --dark-950: 5 5 8;
+  --dark-900: 10 10 15;
+  --dark-800: 17 17 24;
+  --dark-700: 26 26 36;
+  --dark-600: 35 35 47;
+  --dark-500: 46 46 58;
+  --fg-color: 240 240 244;
+  color-scheme: dark;
+}
+
+html.light {
+  /* Light theme */
+  --dark-950: 241 245 249;   /* slate-100  — section tints  */
+  --dark-900: 248 250 252;   /* slate-50   — page bg        */
+  --dark-800: 255 255 255;   /* white      — card surfaces  */
+  --dark-700: 248 250 252;   /* slate-50   — hover tint     */
+  --dark-600: 226 232 240;   /* slate-200  — borders        */
+  --dark-500: 203 213 225;   /* slate-300  — bold borders   */
+  --fg-color: 15 23 42;      /* slate-900  — body text      */
+  color-scheme: light;
+}
+
 @layer base {
   * {
     box-sizing: border-box;
@@ -9,36 +34,26 @@
     padding: 0;
   }
 
-  html {
-    scroll-behavior: smooth;
-  }
+  html { scroll-behavior: smooth; }
 
   body {
-    background-color: #0a0a0f;
-    color: #f0f0f4;
+    background-color: rgb(var(--dark-900));
+    color: rgb(var(--fg-color));
     font-family: 'Inter', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
-  ::-webkit-scrollbar {
-    width: 6px;
-  }
-  ::-webkit-scrollbar-track {
-    background: #0a0a0f;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #2e2e3a;
-    border-radius: 3px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #6366f1;
-  }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track  { background: rgb(var(--dark-900)); }
+  ::-webkit-scrollbar-thumb  { background: rgb(var(--dark-500)); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #6366f1; }
 
   ::selection {
     background: rgba(99, 102, 241, 0.3);
-    color: #f0f0f4;
+    color: rgb(var(--fg-color));
   }
 }
 
@@ -61,7 +76,7 @@
 
   .gradient-border {
     position: relative;
-    background: #111118;
+    background: rgb(var(--dark-800));
   }
   .gradient-border::before {
     content: '';
@@ -79,8 +94,15 @@
   .hero-bg {
     background:
       radial-gradient(ellipse 80% 50% at 50% -10%, rgba(99, 102, 241, 0.25), transparent),
-      radial-gradient(ellipse 50% 30% at 80% 80%, rgba(168, 85, 247, 0.1), transparent),
-      #0a0a0f;
+      radial-gradient(ellipse 50% 30% at 80% 80%, rgba(168, 85, 247, 0.10), transparent),
+      rgb(var(--dark-900));
+  }
+
+  html.light .hero-bg {
+    background:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(99, 102, 241, 0.10), transparent),
+      radial-gradient(ellipse 50% 30% at 80% 80%, rgba(168, 85, 247, 0.06), transparent),
+      rgb(var(--dark-900));
   }
 
   .card-hover {
@@ -90,6 +112,9 @@
     transform: translateY(-4px);
     box-shadow: 0 8px 40px rgba(99, 102, 241, 0.18);
     border-color: rgba(99, 102, 241, 0.4) !important;
+  }
+  html.light .card-hover:hover {
+    box-shadow: 0 8px 32px rgba(99, 102, 241, 0.10);
   }
 
   .btn-primary {
@@ -113,24 +138,113 @@
     box-shadow: 0 0 20px rgba(99, 102, 241, 0.15);
   }
 
-  .section-padding {
-    padding: 80px 0;
-  }
-
-  @media (min-width: 1536px) {
-    .section-padding {
-      padding: 120px 0;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .section-padding {
-      padding: 60px 0;
-    }
-  }
+  .section-padding { padding: 80px 0; }
+  @media (min-width: 1536px) { .section-padding { padding: 120px 0; } }
+  @media (max-width: 768px)  { .section-padding { padding: 60px 0; } }
 }
 
-/* Noise texture overlay for depth */
+/* ═══════════════════════════════════════════════════════════════════════════
+   LIGHT MODE OVERRIDES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ─── text-white/* → dark slate ─────────────────────────────────────────── */
+html.light .text-white        { color: rgba(15, 23, 42, 1.00) !important; }
+html.light .text-white\/90    { color: rgba(15, 23, 42, 0.90) !important; }
+html.light .text-white\/80    { color: rgba(15, 23, 42, 0.80) !important; }
+html.light .text-white\/75    { color: rgba(15, 23, 42, 0.75) !important; }
+html.light .text-white\/70    { color: rgba(15, 23, 42, 0.70) !important; }
+html.light .text-white\/65    { color: rgba(15, 23, 42, 0.65) !important; }
+html.light .text-white\/60    { color: rgba(15, 23, 42, 0.60) !important; }
+html.light .text-white\/55    { color: rgba(15, 23, 42, 0.55) !important; }
+html.light .text-white\/50    { color: rgba(15, 23, 42, 0.50) !important; }
+html.light .text-white\/40    { color: rgba(15, 23, 42, 0.40) !important; }
+html.light .text-white\/30    { color: rgba(15, 23, 42, 0.30) !important; }
+html.light .text-white\/25    { color: rgba(15, 23, 42, 0.25) !important; }
+html.light .text-white\/20    { color: rgba(15, 23, 42, 0.20) !important; }
+html.light .text-white\/10    { color: rgba(15, 23, 42, 0.10) !important; }
+html.light .text-white\/5     { color: rgba(15, 23, 42, 0.05) !important; }
+
+/* ─── hover:text-white ───────────────────────────────────────────────────── */
+html.light .hover\:text-white:hover        { color: rgba(15, 23, 42, 1.00) !important; }
+html.light .hover\:text-white\/90:hover    { color: rgba(15, 23, 42, 0.90) !important; }
+
+/* ─── group-hover:text-white ─────────────────────────────────────────────── */
+html.light .group:hover .group-hover\:text-white    { color: rgba(15, 23, 42, 1.00) !important; }
+html.light .group:hover .group-hover\:text-white\/90 { color: rgba(15, 23, 42, 0.90) !important; }
+
+/* ─── bg-white/* and border-white/* ────────────────────────────────────── */
+html.light .bg-white\/5          { background-color: rgba(15, 23, 42, 0.04) !important; }
+html.light .bg-white\/8          { background-color: rgba(15, 23, 42, 0.06) !important; }
+html.light .bg-white\/10         { background-color: rgba(15, 23, 42, 0.08) !important; }
+html.light .border-white\/8      { border-color: rgba(15, 23, 42, 0.12) !important; }
+html.light .border-white\/10     { border-color: rgba(15, 23, 42, 0.14) !important; }
+html.light .hover\:bg-white\/5:hover  { background-color: rgba(15, 23, 42, 0.04) !important; }
+html.light .hover\:bg-white\/10:hover { background-color: rgba(15, 23, 42, 0.08) !important; }
+
+/* ─── Form placeholders ──────────────────────────────────────────────────── */
+html.light .placeholder-white\/20::placeholder { color: rgba(15, 23, 42, 0.30) !important; }
+html.light .placeholder-white\/25::placeholder { color: rgba(15, 23, 42, 0.35) !important; }
+
+/* ─── Accent -400 colors: stay vibrant on light bg ──────────────────────── */
+html.light .text-indigo-400   { color: #4338ca !important; }
+html.light .text-violet-400   { color: #6d28d9 !important; }
+html.light .text-cyan-400     { color: #0369a1 !important; }
+html.light .text-green-400    { color: #15803d !important; }
+html.light .text-blue-400     { color: #1d4ed8 !important; }
+html.light .text-amber-400    { color: #b45309 !important; }
+html.light .text-orange-400   { color: #c2410c !important; }
+html.light .text-rose-400     { color: #be123c !important; }
+html.light .text-pink-400     { color: #be185d !important; }
+html.light .text-sky-400      { color: #0369a1 !important; }
+html.light .text-amber-400\/80 { color: rgba(180, 83, 9, 0.80) !important; }
+
+/* ─── Accent -300 colors: darken significantly for light bg ─────────────── */
+html.light .text-indigo-300   { color: #4338ca !important; }
+html.light .text-violet-300   { color: #6d28d9 !important; }
+html.light .text-blue-300     { color: #1d4ed8 !important; }
+html.light .text-sky-300      { color: #0369a1 !important; }
+html.light .text-cyan-300     { color: #0891b2 !important; }
+html.light .text-green-300    { color: #15803d !important; }
+html.light .text-amber-300    { color: #b45309 !important; }
+html.light .text-orange-300   { color: #c2410c !important; }
+html.light .text-red-300      { color: #b91c1c !important; }
+html.light .text-rose-300     { color: #be123c !important; }
+
+/* ─── hover:text-indigo-300 etc ─────────────────────────────────────────── */
+html.light .hover\:text-indigo-300:hover { color: #4338ca !important; }
+html.light .hover\:text-indigo-400:hover { color: #4338ca !important; }
+html.light .group:hover .group-hover\:text-indigo-300 { color: #4338ca !important; }
+
+/* ─── Accent bg tints: lighter/softer on light bg ───────────────────────── */
+html.light .bg-indigo-500\/10     { background-color: rgba(99,  102, 241, 0.08) !important; }
+html.light .bg-indigo-500\/20     { background-color: rgba(99,  102, 241, 0.14) !important; }
+html.light .bg-violet-500\/5      { background-color: rgba(139, 92,  246, 0.06) !important; }
+html.light .bg-violet-500\/10     { background-color: rgba(139, 92,  246, 0.08) !important; }
+html.light .bg-green-500\/5       { background-color: rgba(34,  197, 94,  0.08) !important; }
+html.light .bg-green-500\/10      { background-color: rgba(34,  197, 94,  0.10) !important; }
+html.light .bg-amber-500\/5       { background-color: rgba(245, 158, 11,  0.08) !important; }
+html.light .bg-amber-500\/10      { background-color: rgba(245, 158, 11,  0.10) !important; }
+html.light .bg-blue-500\/10       { background-color: rgba(59,  130, 246, 0.08) !important; }
+html.light .bg-sky-500\/10        { background-color: rgba(14,  165, 233, 0.08) !important; }
+html.light .bg-red-500\/10        { background-color: rgba(239, 68,  68,  0.08) !important; }
+html.light .bg-orange-500\/10     { background-color: rgba(249, 115, 22,  0.08) !important; }
+html.light .bg-rose-500\/10       { background-color: rgba(244, 63,  94,  0.08) !important; }
+
+/* ─── Accent border tints ────────────────────────────────────────────────── */
+html.light .border-indigo-500\/20 { border-color: rgba(99,  102, 241, 0.25) !important; }
+html.light .border-indigo-500\/30 { border-color: rgba(99,  102, 241, 0.35) !important; }
+html.light .border-violet-500\/15 { border-color: rgba(139, 92,  246, 0.25) !important; }
+html.light .border-violet-500\/20 { border-color: rgba(139, 92,  246, 0.30) !important; }
+html.light .border-green-500\/15  { border-color: rgba(34,  197, 94,  0.30) !important; }
+html.light .border-green-500\/20  { border-color: rgba(34,  197, 94,  0.35) !important; }
+html.light .border-amber-500\/20  { border-color: rgba(245, 158, 11,  0.35) !important; }
+html.light .border-amber-500\/30  { border-color: rgba(245, 158, 11,  0.40) !important; }
+html.light .border-blue-500\/20   { border-color: rgba(59,  130, 246, 0.30) !important; }
+
+/* ─── SimpleIcons white logos → dark in light mode ──────────────────────── */
+html.light img[src*="simpleicons.org"] { filter: invert(1); }
+
+/* Noise texture overlay */
 .noise-overlay::after {
   content: '';
   position: fixed;

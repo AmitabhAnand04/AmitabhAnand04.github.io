@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
-import { HashRouter, Link, useLocation } from 'react-router-dom'
-import { Menu, X, Download } from 'lucide-react'
+import { Link, useLocation } from 'react-router-dom'
+import { Menu, X, Download, Sun, Moon, Monitor } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useTheme } from '../../context/ThemeContext'
 
 const navLinks = [
   { label: 'Home', path: '/' },
@@ -11,10 +12,18 @@ const navLinks = [
   { label: 'Contact', path: '/contact' },
 ]
 
+const modeLabel = { system: 'System', light: 'Light', dark: 'Dark' } as const
+const ModeIcon = ({ mode, size = 14 }: { mode: 'system' | 'light' | 'dark'; size?: number }) => {
+  if (mode === 'light')  return <Sun size={size} />
+  if (mode === 'dark')   return <Moon size={size} />
+  return <Monitor size={size} />
+}
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const location = useLocation()
+  const { mode, cycleMode } = useTheme()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -80,6 +89,15 @@ export default function Navbar() {
 
             {/* Desktop CTA */}
             <div className="hidden md:flex items-center gap-3">
+              {/* Theme toggle */}
+              <button
+                onClick={cycleMode}
+                title={`Theme: ${modeLabel[mode]} — click to cycle`}
+                className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-white/50 hover:text-white/90 hover:bg-white/5 border border-transparent hover:border-dark-600 transition-all text-xs font-medium"
+              >
+                <ModeIcon mode={mode} />
+                <span className="hidden lg:block">{modeLabel[mode]}</span>
+              </button>
               <a
                 href="/resume.pdf"
                 download
@@ -155,6 +173,21 @@ export default function Navbar() {
                   )
                 })}
               </nav>
+
+              {/* Theme toggle */}
+              <motion.button
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.35 }}
+                onClick={cycleMode}
+                className="flex items-center justify-between px-4 py-3 rounded-xl text-white/60 hover:text-white/90 border border-dark-600 hover:border-dark-500 bg-dark-800 transition-all text-sm font-medium"
+              >
+                <span className="flex items-center gap-2">
+                  <ModeIcon mode={mode} size={16} />
+                  Theme: {modeLabel[mode]}
+                </span>
+                <span className="text-xs text-white/30">tap to change</span>
+              </motion.button>
 
               {/* Mobile CTA */}
               <motion.a

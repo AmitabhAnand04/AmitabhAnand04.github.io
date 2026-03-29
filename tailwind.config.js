@@ -1,16 +1,17 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
         dark: {
-          950: '#050508',
-          900: '#0a0a0f',
-          800: '#111118',
-          700: '#1a1a24',
-          600: '#23232f',
-          500: '#2e2e3a',
+          950: 'rgb(var(--dark-950) / <alpha-value>)',
+          900: 'rgb(var(--dark-900) / <alpha-value>)',
+          800: 'rgb(var(--dark-800) / <alpha-value>)',
+          700: 'rgb(var(--dark-700) / <alpha-value>)',
+          600: 'rgb(var(--dark-600) / <alpha-value>)',
+          500: 'rgb(var(--dark-500) / <alpha-value>)',
         },
         accent: {
           indigo: '#6366f1',
