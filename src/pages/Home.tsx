@@ -70,7 +70,7 @@ export default function Home() {
         {/* Main content — grows to fill, centers vertically */}
         <div className="relative z-10 w-full max-w-6xl mx-auto flex-1 flex items-center">
           {/* Split: text left, photo right */}
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
+          <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-12">
 
             {/* Left: text content */}
             <div className="flex-1 text-center lg:text-left">

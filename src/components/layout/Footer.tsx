@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Github, Linkedin, Mail, Heart } from 'lucide-react'
+import VisitorCounter from '../ui/VisitorCounter'
 
 const navLinks = [
   { label: 'Home', path: '/' },
@@ -89,9 +90,12 @@ export default function Footer() {
           <p className="text-xs text-white/30">
             © {new Date().getFullYear()} Amitabh Anand. All rights reserved.
           </p>
-          <p className="text-xs text-white/30 flex items-center gap-1">
-            Built with <Heart size={10} className="text-rose-400 fill-rose-400" /> using React & Tailwind
-          </p>
+          <div className="flex items-center gap-4">
+            <VisitorCounter />
+            <p className="text-xs text-white/30 flex items-center gap-1">
+              Built with <Heart size={10} className="text-rose-400 fill-rose-400" /> using React & Tailwind
+            </p>
+          </div>
         </div>
       </div>
     </footer>
