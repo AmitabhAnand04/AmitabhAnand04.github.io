@@ -36,7 +36,7 @@ export default function About() {
           <div className="flex justify-center md:justify-start">
             <div className="relative">
               <div className="w-56 h-56 sm:w-64 sm:h-64 rounded-3xl overflow-hidden border-2 border-indigo-500/30 shadow-glow-indigo">
-                <img src="/photos/profile.svg" alt="Amitabh Anand"
+                <img src="/photos/profile.png" alt="Amitabh Anand"
                      className="w-full h-full object-cover object-top" />
               </div>
               {/* Status badge */}

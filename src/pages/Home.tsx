@@ -166,7 +166,7 @@ export default function Home() {
                 <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-indigo-500/30 to-violet-500/20 blur-2xl scale-110 pointer-events-none" />
                 {/* Photo frame */}
                 <div className="relative w-72 xl:w-80 h-80 xl:h-96 rounded-3xl overflow-hidden border border-indigo-500/30 shadow-glow-indigo">
-                  <img src="/photos/hero.svg" alt="Amitabh Anand"
+                  <img src="/photos/hero.png" alt="Amitabh Anand"
                        className="w-full h-full object-cover object-top" />
                 </div>
                 {/* Floating badge — Years */}

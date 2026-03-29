@@ -128,7 +128,7 @@ export default function Contact() {
             {/* Contact photo */}
             <div className="flex items-center gap-4 bg-dark-800 border border-dark-600 rounded-2xl p-4">
               <div className="relative w-16 h-16 rounded-xl overflow-hidden border border-indigo-500/30 flex-shrink-0">
-                <img src="/photos/contact.svg" alt="Amitabh Anand"
+                <img src="/photos/contact.png" alt="Amitabh Anand"
                      className="w-full h-full object-cover object-top" />
               </div>
               <div>
