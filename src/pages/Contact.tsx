@@ -128,16 +128,8 @@ export default function Contact() {
             {/* Contact photo */}
             <div className="flex items-center gap-4 bg-dark-800 border border-dark-600 rounded-2xl p-4">
               <div className="relative w-16 h-16 rounded-xl overflow-hidden border border-indigo-500/30 flex-shrink-0">
-                {/*
-                  ── PHOTO SLOT: Contact Page ──────────────────────────────
-                  Replace the div below with:
-                  <img src="/photos/contact.jpg" alt="Amitabh Anand"
-                       className="w-full h-full object-cover object-top" />
-                  Put your photo at: public/photos/contact.jpg
-                  ─────────────────────────────────────────────────────────*/}
-                <div className="w-full h-full bg-gradient-to-br from-indigo-900/80 to-violet-900/60 flex items-center justify-center">
-                  <span className="text-lg font-black gradient-text select-none">AA</span>
-                </div>
+                <img src="/photos/contact.svg" alt="Amitabh Anand"
+                     className="w-full h-full object-cover object-top" />
               </div>
               <div>
                 <p className="font-semibold text-white text-sm">Amitabh Anand</p>

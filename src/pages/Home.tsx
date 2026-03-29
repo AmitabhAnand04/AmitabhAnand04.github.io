@@ -70,10 +70,10 @@ export default function Home() {
         {/* Main content — grows to fill, centers vertically */}
         <div className="relative z-10 w-full max-w-6xl mx-auto flex-1 flex items-center">
           {/* Split: text left, photo right */}
-          <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-12">
+          <div className="w-full flex flex-col lg:flex-row items-center justify-center gap-16 xl:gap-20">
 
             {/* Left: text content */}
-            <div className="flex-1 text-center lg:text-left">
+            <div className="flex-1 max-w-xl text-center lg:text-left">
               {/* Availability badge */}
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
@@ -166,16 +166,8 @@ export default function Home() {
                 <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-indigo-500/30 to-violet-500/20 blur-2xl scale-110 pointer-events-none" />
                 {/* Photo frame */}
                 <div className="relative w-72 xl:w-80 h-80 xl:h-96 rounded-3xl overflow-hidden border border-indigo-500/30 shadow-glow-indigo">
-                  {/*
-                    ── PHOTO SLOT: Home Hero ──────────────────────────────
-                    Replace the div below with:
-                    <img src="/photos/hero.jpg" alt="Amitabh Anand"
-                         className="w-full h-full object-cover object-top" />
-                    Put your photo at: public/photos/hero.jpg
-                    ─────────────────────────────────────────────────────── */}
-                  <div className="w-full h-full bg-gradient-to-br from-indigo-900/60 via-violet-900/40 to-dark-800 flex items-end justify-center pb-8">
-                    <span className="text-7xl font-black gradient-text select-none">AA</span>
-                  </div>
+                  <img src="/photos/hero.svg" alt="Amitabh Anand"
+                       className="w-full h-full object-cover object-top" />
                 </div>
                 {/* Floating badge — Years */}
                 <div className="absolute -bottom-4 -left-4 bg-dark-800 border border-dark-600 rounded-2xl px-4 py-2.5 shadow-card">

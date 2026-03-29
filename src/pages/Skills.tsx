@@ -52,16 +52,8 @@ export default function Skills() {
           {/* Small avatar photo */}
           <div className="flex-shrink-0">
             <div className="relative w-20 h-20 rounded-2xl overflow-hidden border border-indigo-500/30 shadow-glow-indigo">
-              {/*
-                ── PHOTO SLOT: Skills Page Avatar ────────────────────────
-                Replace the div below with:
-                <img src="/photos/avatar.jpg" alt="Amitabh Anand"
-                     className="w-full h-full object-cover object-top" />
-                Put your photo at: public/photos/avatar.jpg
-                ─────────────────────────────────────────────────────────*/}
-              <div className="w-full h-full bg-gradient-to-br from-indigo-900/80 to-violet-900/60 flex items-center justify-center">
-                <span className="text-xl font-black gradient-text select-none">AA</span>
-              </div>
+              <img src="/photos/avatar.svg" alt="Amitabh Anand"
+                   className="w-full h-full object-cover object-top" />
             </div>
           </div>
           <div>

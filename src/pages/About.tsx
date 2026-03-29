@@ -36,16 +36,8 @@ export default function About() {
           <div className="flex justify-center md:justify-start">
             <div className="relative">
               <div className="w-56 h-56 sm:w-64 sm:h-64 rounded-3xl overflow-hidden border-2 border-indigo-500/30 shadow-glow-indigo">
-                {/*
-                  ── PHOTO SLOT: About Page (main profile) ─────────────────
-                  Replace the div below with:
-                  <img src="/photos/profile.jpg" alt="Amitabh Anand"
-                       className="w-full h-full object-cover object-top" />
-                  Put your photo at: public/photos/profile.jpg
-                  ─────────────────────────────────────────────────────────*/}
-                <div className="w-full h-full bg-gradient-to-br from-indigo-900/80 via-violet-900/60 to-dark-800 flex items-center justify-center">
-                  <span className="text-6xl font-black gradient-text select-none">AA</span>
-                </div>
+                <img src="/photos/profile.svg" alt="Amitabh Anand"
+                     className="w-full h-full object-cover object-top" />
               </div>
               {/* Status badge */}
               <div className="absolute -bottom-3 -right-3 bg-dark-800 border border-green-500/30 rounded-xl px-3 py-1.5 flex items-center gap-2 shadow-lg">
