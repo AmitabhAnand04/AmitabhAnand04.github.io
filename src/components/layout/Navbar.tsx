@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Menu, X, Download, Sun, Moon, Monitor } from 'lucide-react'
+import { Linkedin } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTheme } from '../../context/ThemeContext'
+
+const LINKEDIN_URL = 'https://linkedin.com/in/amitabhanand04'
 
 const navLinks = [
   { label: 'Home', path: '/' },
@@ -22,6 +25,7 @@ const ModeIcon = ({ mode, size = 14 }: { mode: 'system' | 'light' | 'dark'; size
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [hasResume, setHasResume] = useState(false)
   const location = useLocation()
   const { mode, cycleMode } = useTheme()
 
@@ -39,6 +43,13 @@ export default function Navbar() {
     document.body.style.overflow = mobileOpen ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
   }, [mobileOpen])
+
+  // Auto-detect resume.pdf — switches button without any code change
+  useEffect(() => {
+    fetch('/resume.pdf', { method: 'HEAD' })
+      .then((res) => setHasResume(res.ok))
+      .catch(() => setHasResume(false))
+  }, [])
 
   return (
     <>
@@ -96,14 +107,27 @@ export default function Navbar() {
                 <ModeIcon mode={mode} />
                 <span className="hidden lg:block">{modeLabel[mode]}</span>
               </button>
-              <a
-                href="/resume.pdf"
-                download
-                className="btn-outline flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-white/80 hover:text-white"
-              >
-                <Download size={14} />
-                Resume
-              </a>
+
+              {hasResume ? (
+                <a
+                  href="/resume.pdf"
+                  download
+                  className="btn-outline flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-white/80 hover:text-white"
+                >
+                  <Download size={14} />
+                  Resume
+                </a>
+              ) : (
+                <a
+                  href={LINKEDIN_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-outline flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-white/80 hover:text-white"
+                >
+                  <Linkedin size={14} />
+                  LinkedIn
+                </a>
+              )}
             </div>
 
             {/* Mobile hamburger */}
@@ -176,7 +200,7 @@ export default function Navbar() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.35 }}
                 onClick={cycleMode}
-                className="flex items-center justify-between px-4 py-3 rounded-xl text-white/60 hover:text-white/90 border border-dark-600 hover:border-dark-500 bg-dark-800 transition-all text-sm font-medium"
+                className="flex items-center justify-between px-4 py-3 rounded-xl text-white/60 hover:text-white/90 border border-dark-600 hover:border-dark-500 bg-dark-800 transition-all text-sm font-medium mb-3"
               >
                 <span className="flex items-center gap-2">
                   <ModeIcon mode={mode} size={16} />
@@ -190,12 +214,14 @@ export default function Navbar() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                href="/resume.pdf"
-                download
+                href={hasResume ? '/resume.pdf' : LINKEDIN_URL}
+                download={hasResume || undefined}
+                target={hasResume ? undefined : '_blank'}
+                rel={hasResume ? undefined : 'noopener noreferrer'}
                 className="btn-primary flex items-center justify-center gap-2 py-4 rounded-xl text-white font-medium"
               >
-                <Download size={16} />
-                Download Resume
+                {hasResume ? <Download size={16} /> : <Linkedin size={16} />}
+                {hasResume ? 'Download Resume' : 'View LinkedIn'}
               </motion.a>
             </div>
           </motion.div>
