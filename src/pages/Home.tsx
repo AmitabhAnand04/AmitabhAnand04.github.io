@@ -68,9 +68,9 @@ export default function Home() {
         <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-violet-600/8 rounded-full blur-3xl pointer-events-none" />
 
         {/* Main content — grows to fill, centers vertically */}
-        <div className="relative z-10 w-full max-w-6xl mx-auto flex-1 flex items-center">
+        <div className="relative z-10 w-full max-w-6xl 2xl:max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-12 flex-1 flex items-center">
           {/* Split: text left, photo right */}
-          <div className="w-full flex flex-col lg:flex-row items-center justify-center gap-16 xl:gap-20">
+          <div className="w-full flex flex-col lg:flex-row items-center justify-center gap-16 xl:gap-20 2xl:gap-28">
 
             {/* Left: text content */}
             <div className="flex-1 max-w-xl text-center lg:text-left">
@@ -90,7 +90,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-black leading-[1.08] tracking-tight mb-6"
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black leading-[1.08] tracking-tight mb-6"
               >
                 Building{' '}
                 <span className="gradient-text">Intelligent</span>
@@ -165,7 +165,7 @@ export default function Home() {
                 {/* Outer glow ring */}
                 <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-indigo-500/30 to-violet-500/20 blur-2xl scale-110 pointer-events-none" />
                 {/* Photo frame */}
-                <div className="relative w-72 xl:w-80 h-80 xl:h-96 rounded-3xl overflow-hidden border border-indigo-500/30 shadow-glow-indigo">
+                <div className="relative w-72 xl:w-80 2xl:w-96 h-80 xl:h-96 2xl:h-[28rem] rounded-3xl overflow-hidden border border-indigo-500/30 shadow-glow-indigo">
                   <img src="/photos/hero.png" alt="Amitabh Anand"
                        className="w-full h-full object-cover object-top" />
                 </div>
@@ -199,7 +199,7 @@ export default function Home() {
 
       {/* STATS */}
       <section className="bg-dark-800/50 border-y border-dark-600/40">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="max-w-6xl 2xl:max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-12 py-12">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {stats.map((stat) => (
               <div key={stat.label}>
@@ -215,7 +215,7 @@ export default function Home() {
 
       {/* FEATURED PROJECTS */}
       <section className="section-padding">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl 2xl:max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -249,7 +249,7 @@ export default function Home() {
 
       {/* WHAT I DO */}
       <section className="section-padding bg-dark-800/30">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl 2xl:max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -288,7 +288,7 @@ export default function Home() {
 
       {/* LLM MARQUEE */}
       <section className="py-14 border-y border-dark-700/40 bg-dark-800/20 overflow-hidden">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
+        <div className="max-w-6xl 2xl:max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-12 mb-6">
           <p className="text-xs font-semibold text-white/25 uppercase tracking-widest text-center">
             AI Models & Platforms I Build With
           </p>
@@ -298,7 +298,7 @@ export default function Home() {
 
       {/* CTA BANNER */}
       <section className="section-padding">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl 2xl:max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-12">
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}

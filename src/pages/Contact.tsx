@@ -95,7 +95,7 @@ export default function Contact() {
 
   return (
     <main className="pt-24 pb-20">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-5xl 2xl:max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-12">
 
         {/* Header */}
         <motion.div
