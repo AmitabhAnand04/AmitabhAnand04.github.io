@@ -36,9 +36,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <Link to="/" className="flex items-center gap-2 mb-3">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-white font-bold text-xs">
-                AA
-              </div>
+              <img src="/photos/logo.png" alt="AA" className="w-8 h-8 rounded-lg object-cover" />
               <span className="font-semibold text-white">Amitabh Anand</span>
             </Link>
             <p className="text-sm text-white/40 leading-relaxed">

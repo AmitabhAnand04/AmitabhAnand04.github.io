@@ -53,9 +53,7 @@ export default function Navbar() {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2 group">
-              <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-white font-bold text-sm shadow-glow-indigo group-hover:shadow-glow-violet transition-shadow duration-300">
-                AA
-              </div>
+              <img src="/photos/logo.png" alt="AA" className="w-9 h-9 rounded-lg shadow-glow-indigo group-hover:shadow-glow-violet transition-shadow duration-300 object-cover" />
               <span className="hidden sm:block font-semibold text-white/90 group-hover:text-white transition-colors">
                 Amitabh Anand
               </span>
@@ -133,9 +131,7 @@ export default function Navbar() {
               {/* Header */}
               <div className="flex items-center justify-between mb-12">
                 <div className="flex items-center gap-2">
-                  <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-white font-bold text-sm">
-                    AA
-                  </div>
+                  <img src="/photos/logo.png" alt="AA" className="w-9 h-9 rounded-lg object-cover" />
                   <span className="font-semibold text-white">Amitabh Anand</span>
                 </div>
                 <button
