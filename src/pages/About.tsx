@@ -207,10 +207,13 @@ export default function About() {
                 viewport={{ once: true }}
                 className="bg-amber-500/5 border border-amber-500/20 rounded-2xl p-6 flex items-start gap-4"
               >
-                <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center flex-shrink-0">
-                  <Award size={18} className="text-amber-400" />
+                <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center flex-shrink-0 overflow-hidden">
+                  {award.image
+                    ? <img src={award.image} alt={award.title} className="w-full h-full object-cover rounded-xl" />
+                    : <Award size={18} className="text-amber-400" />
+                  }
                 </div>
-                <div>
+                <div className="flex-1">
                   <div className="flex items-center gap-3 mb-1">
                     <h3 className="font-bold text-white text-sm">{award.title}</h3>
                     {award.count && (
@@ -249,8 +252,11 @@ export default function About() {
                 transition={{ delay: i * 0.1 }}
                 className="bg-dark-800 border border-dark-600 rounded-2xl p-5 card-hover flex items-start gap-4"
               >
-                <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center flex-shrink-0">
-                  <BadgeCheck size={18} className="text-blue-400" />
+                <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center flex-shrink-0 overflow-hidden">
+                  {cert.image
+                    ? <img src={cert.image} alt={cert.name} className="w-full h-full object-cover rounded-xl" />
+                    : <BadgeCheck size={18} className="text-blue-400" />
+                  }
                 </div>
                 <div>
                   <h3 className="font-semibold text-white text-sm mb-1">{cert.name}</h3>

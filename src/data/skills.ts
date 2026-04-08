@@ -13,12 +13,14 @@ export interface Certification {
   issuer: string
   issued: string
   credentialId?: string
+  image?: string
 }
 
 export interface Award {
   title: string
   count?: number
   description: string
+  image?: string
 }
 
 export const education: Education[] = [
@@ -63,8 +65,8 @@ export const certifications: Certification[] = [
 export const awards: Award[] = [
   {
     title: 'Outstanding Performance Award',
-    count: 2,
-    description: 'Awarded twice for exceptional contributions to AI system development and delivery of high-impact production projects.',
+    count: 3,
+    description: 'Awarded three times for exceptional contributions to AI system development and delivery of high-impact production projects.',
   },
 ]
 
