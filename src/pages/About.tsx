@@ -293,8 +293,11 @@ export default function About() {
                 transition={{ delay: i * 0.1 }}
                 className="bg-dark-800 border border-dark-600 rounded-2xl p-5 card-hover flex items-start gap-4"
               >
-                <div className="w-10 h-10 rounded-xl bg-green-500/10 border border-green-500/20 flex items-center justify-center flex-shrink-0">
-                  <GraduationCap size={18} className="text-green-400" />
+                <div className={`w-14 h-14 rounded-xl border border-green-500/20 flex items-center justify-center flex-shrink-0 overflow-hidden ${edu.image ? (edu.imageBg ?? 'bg-dark-700') : 'bg-green-500/10'}`}>
+                  {edu.image
+                    ? <img src={edu.image} alt={edu.institution} className="w-full h-full object-contain p-1.5" />
+                    : <GraduationCap size={24} className="text-green-400" />
+                  }
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex flex-wrap items-start justify-between gap-2">

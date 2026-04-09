@@ -6,6 +6,8 @@ export interface Education {
   field: string
   period: string
   grade?: string
+  image?: string
+  imageBg?: string
 }
 
 export interface Certification {
@@ -30,6 +32,8 @@ export const education: Education[] = [
     field: 'Computer Science',
     period: 'Jan 2020 – May 2023',
     grade: 'First Class with Distinction',
+    image: '/photos/bit_logo.jpeg',
+    imageBg: 'bg-white',
   },
   {
     institution: 'Birla Institute of Technology, Mesra',
@@ -37,6 +41,8 @@ export const education: Education[] = [
     field: 'Computer Science',
     period: 'Jun 2017 – Jun 2020',
     grade: 'First Class with Distinction',
+    image: '/photos/bit_logo.jpeg',
+    imageBg: 'bg-white',
   },
   {
     institution: 'Jawahar Navodaya Vidyalaya (JNV)',
@@ -44,6 +50,8 @@ export const education: Education[] = [
     field: '',
     period: 'Jul 2010 – May 2015',
     grade: '8.60 / 10',
+    image: '/photos/jnv_logo.png',
+    imageBg: 'bg-white',
   },
 ]
 
